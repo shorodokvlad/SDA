@@ -1,0 +1,32 @@
+Inginer, 1010, Adamescu, Adam
+Inginer, 1200, Dumitrescu, Dumitrita
+Sofer, 1090, Teodorescu, Teodora
+Sofer, 1270a, Vasilescu, Vasile Viorel
+Sofer, 1270, Vasilescu, Vasile Viorel
+Inginer, 1200, Ionescu, Dumitru
+
+1000, 100
+1200, 200
+1090, 250, 1000
+1270, 280, 3000
+0
+
+1010, 100
+1200
+1270, 380, 2000
+1090 , 200
+3
+
+1010, 100
+1090, 250, 1000
+1270, 280, 3000
+2
+
+1010, 200
+1200
+1200, 250
+1210, 120
+1200, 210
+1090, 250, 1000
+1270, 380, 7000
+1

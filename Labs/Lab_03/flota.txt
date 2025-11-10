@@ -1,0 +1,15 @@
+Regina Maria, RO, NavaCroaziera, 1500
+Carpati, RO, Cargou, 10000
+Dunarea, BG, Feribot, 100, 20
+Insula Misterioasa, RO, Feribot, 300, 75
+Iasi, RO, NavaCroaziera, 2500
+Apuseni, RO, Cargou, 20000
+Plevna, BG, Cargou, 10020
+Botosani, RO, NavaCroaziera, 500
+Navodari , RO , Feribot, 300, 75
+Constanta ,RO, NavaCroaziera , 2500
+Ultima limita , RO , Cargou , 50000
+Falticeni, RO, Feribot, 300, -75
+Bucuresti
+Bucuresti, RO, Cargou, -100000
+Ilfov,RO,100,Feribot, 50
