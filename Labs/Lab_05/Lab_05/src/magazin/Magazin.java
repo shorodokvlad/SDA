@@ -2,6 +2,8 @@ package magazin;
 
 import cutii.*;
 import jucarii.*;
+
+import java.io.File;
 import java.util.*;
 
 public class Magazin {
@@ -23,6 +25,53 @@ public class Magazin {
             idx++;
         }
         System.out.println("Suma totala incasata=" + suma);
+    }
+
+    public void citesteVanzari(String numeFisier) {
+        try (Scanner br = new Scanner(new File(numeFisier))) {
+
+            String linie;
+
+            while ((linie = br.nextLine()) != null) {
+
+                linie = linie.trim();
+                if (linie.isEmpty()) continue;
+
+                // Exemplu linie: "Minge da DA"
+                String[] parti = linie.split("\\s+");
+                if (parti.length < 3) continue;
+
+                String numeJucarie = parti[0];
+                boolean cereCutie = parti[1].equalsIgnoreCase("da");
+                boolean cerePanglica = parti[2].equalsIgnoreCase("da");
+
+                // 1. Creez jucăria corespunzătoare
+                Jucarie j;
+                switch (numeJucarie.toLowerCase()) {
+                    case "minge":
+                        j = new Minge();
+                        break;
+                    case "racheta":
+                        j = new Racheta();
+                        break;
+                    case "avion":
+                        j = new Avion();
+                        break;
+                    default:
+                        System.out.println("Jucărie necunoscută: " + numeJucarie);
+                        continue;
+                }
+
+                // 2. Creez pachetul
+                Pachet p = new Pachet(j, cereCutie, cerePanglica);
+
+                // 5. Adaug la lista de vânzări
+                listaVanzari.add(p);
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void main(String[] args) {

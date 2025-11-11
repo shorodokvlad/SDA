@@ -8,6 +8,10 @@ public class Minge extends Jucarie {
         super(dim, 0.0, 0.0); // folosim doar l1
     }
 
+    public Minge() {
+        super();
+    }
+
     @Override
     public TipCutie getTipCutie() {
         return TipCutie.CUB;

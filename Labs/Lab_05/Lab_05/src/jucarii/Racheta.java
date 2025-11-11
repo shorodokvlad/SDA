@@ -8,6 +8,8 @@ public class Racheta extends Jucarie {
         super(l1, l2, 0.0);
     }
 
+    public Racheta() {}
+
     @Override
     public TipCutie getTipCutie() {
         return TipCutie.CILINDRU;

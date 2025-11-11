@@ -5,6 +5,10 @@ import cutii.TipCutie;
 public abstract class Jucarie {
     private double dimensiuni[] = new double[3];
 
+    public Jucarie() {
+
+    }
+
     public abstract TipCutie getTipCutie();
     public abstract double getPret();
 

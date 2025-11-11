@@ -8,6 +8,8 @@ public class Avion extends Jucarie {
         super(l1, l2, l3);
     }
 
+    public Avion() {}
+
     @Override
     public TipCutie getTipCutie() {
         return TipCutie.PARALELIPIPED;
