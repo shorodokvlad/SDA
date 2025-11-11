@@ -3,11 +3,9 @@ package jucarii;
 import cutii.TipCutie;
 
 public class Racheta extends Jucarie {
-    private int pret = 120;
-    TipCutie tipCutie = TipCutie.PARALELIPIPED;
 
     public Racheta(double l1, double l2) {
-        super(l1, l2, l1);
+        super(l1, l2, 0.0);
     }
 
     @Override
@@ -17,11 +15,13 @@ public class Racheta extends Jucarie {
 
     @Override
     public double getPret() {
-        return 120;
+        return 120.0;
     }
 
     @Override
     public String toString() {
-        return String.format("{Racheta,cutie recomandata:%s, l1=%.1f, l2=%.1f",getTipCutie(),super.getDimensiuni()[0],super.getDimensiuni()[1]);
+        double l1 = getDimensiuni()[0];
+        double l2 = getDimensiuni()[1];
+        return "{Racheta, cutie recomandata:" + getTipCutie() + ", l1=" + l1 + ", l2=" + l2 + "}";
     }
 }

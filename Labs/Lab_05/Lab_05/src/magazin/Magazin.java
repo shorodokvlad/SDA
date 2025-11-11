@@ -1,89 +1,92 @@
 package magazin;
 
-import cutii.Paralelipiped;
-import jucarii.Avion;
-import jucarii.Minge;
-import jucarii.Racheta;
-import cutii.Cub;
-import cutii.Cilindru;
-
-import java.util.ArrayList;
+import cutii.*;
+import jucarii.*;
+import java.util.*;
 
 public class Magazin {
-    ArrayList<Pachet> listaVanzari = new ArrayList<>();
 
-    public ArrayList <Pachet> getListaVanzari() {
+    private ArrayList<Pachet> listaVanzari = new ArrayList<>();
+
+    public List<Pachet> getListaVanzari() {
         return listaVanzari;
     }
 
     public void afisVanzari() {
-        int counter = 1;
-        for (Pachet p:listaVanzari) {
-            System.out.println(counter + ". " + p.toString());
-            counter++;
-            System.out.println(p.PretPachete());
+        System.out.println("Vanzari efectuate");
+        int idx = 1;
+        double suma = 0.0;
+        for (Pachet p : listaVanzari) {
+            System.out.println(idx + ". " + p.toString());
+            System.out.println("Pret=" + p.pretPachet());
+            suma += p.pretPachet();
+            idx++;
         }
+        System.out.println("Suma totala incasata=" + suma);
     }
 
     public static void main(String[] args) {
-        System.out.println("\n===== Demo Pachet (1p) =====");
+        // Demo Cutii
+        System.out.println("===== Demo Cutii (2p) =====");
+        ICutie[] cutii = new ICutie[3];
+        cutii[0] = new Paralelipiped(10.0, 20.0, 30.0);
+        cutii[1] = new Cub(40.0);
+        cutii[2] = new Cilindru(50.0, 60.0);
+        System.out.println(Arrays.toString(cutii));
+
+        // Demo Jucarii
+        System.out.println("===== Demo Jucarii (2p) =====");
+        Jucarie[] jucs = new Jucarie[3];
+        jucs[0] = new Avion(15.0, 25.0, 35.0);
+        jucs[1] = new Minge(45.0);
+        jucs[2] = new Racheta(55.0, 65.0);
+        System.out.println(Arrays.toString(jucs));
+
+        // Demo Fabrica de cutii
+        System.out.println("===== Demo Fabrica de cutii (1p) =====");
+        for (Jucarie j : jucs) {
+            ICutie c = FabricaCutii.getCutie(j);
+            System.out.println("Pentru jucaria:" + j.toString() + " cutia:" + c.toString());
+        }
+
+        // Demo Panglica
+        System.out.println("===== Demo Panglica (1p) =====");
+        ICutie c1 = new Paralelipiped(10.0, 20.0, 30.0);
+        double lung1 = c1.getLungimePanglica();
+        System.out.println("Pentru cutia:" + c1.toString() + " necesar lung_panglica=:" + lung1);
+        RolaPanglica.getRola().cumpara(lung1);
+        System.out.println("dupa cumparare: " + RolaPanglica.getRola().toString());
+
+        ICutie c2 = new Cub(40.0);
+        double lung2 = c2.getLungimePanglica();
+        System.out.println("Pentru cutia:" + c2.toString() + " necesar lung_panglica=:" + lung2);
+        RolaPanglica.getRola().cumpara(lung2);
+        System.out.println("dupa cumparare: " + RolaPanglica.getRola().toString());
+
+        ICutie c3 = new Cilindru(50.0, 60.0);
+        double lung3 = c3.getLungimePanglica();
+        System.out.println("Pentru cutia:" + c3.toString() + " necesar lung_panglica=:" + lung3);
+        RolaPanglica.getRola().cumpara(lung3);
+        System.out.println("dupa cumparare: " + RolaPanglica.getRola().toString());
+
+        // Demo Pachet
+        System.out.println("===== Demo Pachet (1p) =====");
         Pachet p1 = new Pachet(new Minge(10), true, true);
         System.out.println(p1);
         System.out.println("Pret=" + p1.pretPachet());
 
-        System.out.println("===== Demo Cutii (1p) =====");
-        Paralelipiped paralelipiped = new Paralelipiped(10, 20, 30);
-        Cub cub = new Cub(40);
-        Cilindru cilindru = new Cilindru(50, 60);
-        System.out.println("[" + paralelipiped.toString() + ", " + cub.toString() + ", " + cub.toString() + ", " + cilindru.toString() + "]");
-
-        System.out.println("===== Demo Jucarii (1p) =====");
-        Avion avion = new Avion(10, 20, 30);
-        Minge minge = new Minge(40);
-        Racheta racheta = new Racheta(10, 60);
-        System.out.println("[" + avion.toString() + ", " + minge.toString() + ", " + racheta.toString() + "]");
-
-        System.out.println("===== Demo Panglica (1p) =====");
-        RolaPanglica rola = RolaPanglica.getInstance();
-        System.out.println("Pentru cutia:" + paralelipiped.toString() + " necesar lung_pang=" + paralelipiped.getLungimePanglica());
-        System.out.println("        dupa cumparare:" + rola.getDisponibil(paralelipiped));
-        System.out.println("Pentru cutia:" + cub.toString() + " necesar lung_pang=" + cub.getLungimePanglica());
-        double dispCub = rola.getDisponibil(cub);
-        System.out.println("dupa cumparare:" + dispCub);
-        System.out.println("Pentru cutia:" + cilindru.toString() + " necesar lung_pang=" + cilindru.getLungimePanglica());
-        double dispCilindru = rola.getDisponibil(cilindru);
-        FabricaCutii fabrica = new FabricaCutii();
-        System.out.println("dupa cumparare:" + dispCilindru);
-        System.out.println("===== Demo Fabrica de Cutii (1p) =====");
-        System.out.println("Pentru jucaria:" + avion.toString());
-        Object cutieAvion = fabrica.getCutie(avion);
-        System.out.println("cutia:" + cutieAvion.toString());
-        System.out.println("Pentru jucaria:" + minge.toString());
-
-        Object cutieMinge = fabrica.getCutie(minge);
-        System.out.println("cutia:" + cutieMinge.toString());
-        System.out.println("Pentru jucaria:" + racheta.toString());
-
-        Object cutieRacheta = fabrica.getCutie(racheta);
-        System.out.println("cutia:" + cutieRacheta.toString());
-        System.out.println("\n===== Demo Pachet (1p) =====");
-        Pachet p2 = new Pachet(new Minge(10), true, true);
-        System.out.println(p2);
-        System.out.println("Pret=" + p2.PretPachete());
-
-
+        // Demo Magazin
         System.out.println("\n===== Demo Magazin (2p) =====");
         Magazin m = new Magazin();
-        ArrayList<Pachet> vanzari = m.getListaVanzari(); vanzari.add( new
-                Pachet(new Minge(10), true, true) ); vanzari.add( new
-                Pachet(new Minge(10), true, false) ); vanzari.add( new
-                Pachet(new Minge(10), true, true) ); vanzari.add( new
-                Pachet(new Minge(10), false, false) ); vanzari.add( new
-                Pachet(new Racheta(10,20), false, false) ); vanzari.add( new
-                Pachet(new Avion(10,20, 30), false, false) ); vanzari.add( new
-                Pachet(new Avion(10,20, 30), true, false) );
+        List<Pachet> vanzari = m.getListaVanzari();
+        vanzari.add(new Pachet(new Minge(10), true, true));
+        vanzari.add(new Pachet(new Minge(10), true, false));
+        vanzari.add(new Pachet(new Minge(10), true, true));
+        vanzari.add(new Pachet(new Minge(10), false, false));
+        vanzari.add(new Pachet(new Racheta(10,20), false, false));
+        vanzari.add(new Pachet(new Avion(10,20, 30), false, false));
+        vanzari.add(new Pachet(new Avion(10,20, 30), true, false));
         m.afisVanzari();
-        System.out.println("In rola au mai ramas "+
-                RolaPanglica.getRola().getDisponibil()+" cm");
+        System.out.println("In rola au mai ramas " + RolaPanglica.getRola().getDisponibil() + " cm");
     }
 }

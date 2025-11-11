@@ -1,10 +1,10 @@
 package jucarii;
-import cutii.TipCutie;
 
-import java.util.Arrays;
+import cutii.TipCutie;
 
 public abstract class Jucarie {
     private double dimensiuni[] = new double[3];
+
     public abstract TipCutie getTipCutie();
     public abstract double getPret();
 
@@ -12,10 +12,6 @@ public abstract class Jucarie {
         this.dimensiuni[0] = l1;
         this.dimensiuni[1] = l2;
         this.dimensiuni[2] = l3;
-    }
-
-    public Jucarie(double[] dimensiuni) {
-        this.dimensiuni = dimensiuni;
     }
 
     public double[] getDimensiuni() {

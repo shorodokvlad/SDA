@@ -2,12 +2,10 @@ package jucarii;
 
 import cutii.TipCutie;
 
-public class Minge extends Jucarie{
-    private int pret = 50;
-    TipCutie tipCutie = TipCutie.CUB;
+public class Minge extends Jucarie {
 
-    public Minge(double l1) {
-        super(l1, l1, l1);
+    public Minge(double dim) {
+        super(dim, 0.0, 0.0); // folosim doar l1
     }
 
     @Override
@@ -17,11 +15,12 @@ public class Minge extends Jucarie{
 
     @Override
     public double getPret() {
-        return 50;
+        return 50.0;
     }
 
     @Override
     public String toString() {
-        return String.format("Minge, cutie recomandata: %s, l1 = %.1f", getTipCutie(), super.getDimensiuni()[0]);
+        double l1 = getDimensiuni()[0];
+        return "{Minge, cutie recomandata:" + getTipCutie() + ", l1=" + l1 + "}";
     }
 }

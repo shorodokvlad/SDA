@@ -1,34 +1,34 @@
 package cutii;
 
 public class Paralelipiped implements ICutie {
-    private double lungime;
-    private double latime;
+    private double l; // mic
+    private double L; // mare
     private double h;
 
-    public Paralelipiped(double lungime, double latime, double h) {
-        this.lungime = lungime;
-        this.latime = latime;
+    public Paralelipiped(double l, double L, double h) {
+        this.l = l;
+        this.L = L;
         this.h = h;
     }
 
+    public double getL() { return l; }
+    public double getLarga() { return L; }
+    public double getH() { return h; }
+
     @Override
     public double getSuprafataTotala() {
-        return 2 * (h * lungime + h * latime + lungime * latime);
+        return 2 * (l * L + l * h + L * h);
     }
 
     @Override
     public double getLungimePanglica() {
-        return (int)(2 * (lungime + h) + 2 * (lungime + latime) + lnod);
-    }
-
-    @Override
-    public double pret() {
-        return ICutie.super.pret();
+        // conform enunț: lungimea = 2*(L+h) + 2*(l+L) + lnod
+        double lung = 2 * (L + h) + 2 * (l + L);
+        return lung + ICutie.lnod;
     }
 
     @Override
     public String toString() {
-        return String.format("Cutie - Paralelipiped {l=%.1f, L=%.1f, h=%.1f}",lungime,latime, h);
-
+        return "Cutie - Paralelipiped{l=" + l + ", L=" + L + ", h=" + h + "}";
     }
 }
